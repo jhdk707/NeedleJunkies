@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
+//import './App.css'
 // import ReactDOM  from 'react';
-import Header from './components/Header'
-import AboutMe from './components/AboutMe'
-import Contact from './components/Contact'
-import Resume from './components/Resume'
-import Footer from './components/Footer';
+import Donations from './components/Donations'
+import Friends from './components/Friends';
+import Quickadd from './components/Quickadd';
+import Mycollection from './components/Mycollection';
+import Signup from './components/Signup';
+import Home from './components/Home';
 import Navigation from './components/Navigation';
-import Project from './components/Project';
+//import Project from './components/Project';
 import { HashRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -19,14 +20,14 @@ function App() {
                 
                 <Routes>
                     
-                    <Route path='/project' element={<Project/>}/>
-                    <Route path='/' element={<Header/>}/>
-                    <Route path='/aboutme' element={<AboutMe/>}/>
-                    <Route path='/resume' element={<Resume/>}/>
-                    <Route path='/contact' element={<Contact/>}/>
-                    <Route path='/footer' element={<Footer/>}/>
+                    <Route path='/home' element={<Home/>}/>
+                    <Route path='/' element={<Signup/>}/>
+                    <Route path='/mycollection' element={<Mycollection/>}/>
+                    <Route path='/quickadd' element={<Quickadd/>}/>
+                    <Route path='/friends' element={<Friends/>}/>
+                    <Route path='/donations' element={<Donations/>}/>
                 </Routes>
-                <Footer/>
+                
             </HashRouter>
 
 
