@@ -1,4 +1,5 @@
 import * as React from 'react';
+import SearchFun from "./SearchFun"
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -20,35 +21,35 @@ import { Link } from 'react-router-dom';
 import '../app.css';
 
 const pages = [
-{
+  {
     id: 1,
-    page:'Home',
+    page: 'Home',
     path: '/home'
-},
-{
+  },
+  {
     id: 2,
     page: 'My Collection',
     path: '/mycollection'
 
-},
-{
+  },
+  {
     id: 3,
     page: 'Friends',
     path: '/friends'
 
-},
-{
+  },
+  {
     id: 4,
     page: 'Donations',
     path: '/donations'
 
-},
-{
+  },
+  {
     id: 5,
     page: 'Contact',
     path: '/contact'
 
-},
+  },
 ]
 
 
@@ -173,10 +174,10 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 20 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={20} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -236,11 +237,11 @@ export default function PrimarySearchAppBar() {
               textDecoration: 'none',
             }}
           >
-            
+
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to = {page.path}
+              <Link to={page.path}
                 key={page.id}
                 // onClick={handleCloseNavMenu}
                 style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px', flexbox:'flex', justifyContent: 'space-evenly' }}
@@ -248,9 +249,10 @@ export default function PrimarySearchAppBar() {
                 {page.page}
               </Link>
             ))}
-            </Box>
-            {/* end of link to pages code */}
-          <Search>
+          </Box>
+          {/* end of added buttons code */}
+          <SearchFun />
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -258,7 +260,7 @@ export default function PrimarySearchAppBar() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -268,7 +270,7 @@ export default function PrimarySearchAppBar() {
             </IconButton> */}
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 20 new notifications"
               color="inherit"
             >
               <Badge badgeContent={69} color="error">
