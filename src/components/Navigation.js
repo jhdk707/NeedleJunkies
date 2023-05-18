@@ -1,4 +1,5 @@
 import * as React from 'react';
+import SearchFun from "./SearchFun"
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,37 +18,38 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import '../app.css';
 
 const pages = [
-{
+  {
     id: 1,
-    page:'Home',
+    page: 'Home',
     path: '/home'
-},
-{
+  },
+  {
     id: 2,
     page: 'My Collection',
     path: '/mycollection'
 
-},
-{
+  },
+  {
     id: 3,
     page: 'Friends',
     path: '/friends'
 
-},
-{
+  },
+  {
     id: 4,
     page: 'Donations',
     path: '/donations'
 
-},
-{
+  },
+  {
     id: 5,
     page: 'Contact',
     path: '/contact'
 
-},
+  },
 ]
 
 
@@ -101,6 +103,10 @@ export default function PrimarySearchAppBar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+// trying to add notification pop up menu
+  const handleAlertMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -135,8 +141,12 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+        <Link to = '/profile' style= {{color: 'black', textDecoration:'none'}}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <Link to ='/myaccount' style= {{color: 'black', textDecoration:'none'}}>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -157,21 +167,21 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <MailIcon className='mailIcon'/>
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 20 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={20} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -194,7 +204,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#4b88a2ff' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -214,7 +224,7 @@ export default function PrimarySearchAppBar() {
             Needle / Junkeez
           </Typography>
 
-          {/* start of added buttons code */}
+          {/* start of link to pages code */}
           <Typography
             variant="h5"
             noWrap
@@ -231,21 +241,22 @@ export default function PrimarySearchAppBar() {
               textDecoration: 'none',
             }}
           >
-            
+
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to = {page.path}
+              <Link to={page.path}
                 key={page.id}
                 // onClick={handleCloseNavMenu}
-                style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px' }}
+                style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px', flexbox:'flex', justifyContent: 'space-evenly' }}
               >
                 {page.page}
               </Link>
             ))}
-            </Box>
-            {/* end of added buttons code */}
-          <Search>
+          </Box>
+          {/* end of added buttons code */}
+          <SearchFun />
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -253,20 +264,21 @@ export default function PrimarySearchAppBar() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={456} color="error">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 20 new notifications"
               color="inherit"
+              onClick={handleAlertMenuOpen}
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={69} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
