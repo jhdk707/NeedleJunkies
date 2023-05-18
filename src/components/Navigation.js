@@ -103,6 +103,10 @@ export default function PrimarySearchAppBar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+// trying to add notification pop up menu
+  const handleAlertMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -272,6 +276,7 @@ export default function PrimarySearchAppBar() {
               size="large"
               aria-label="show 20 new notifications"
               color="inherit"
+              onClick={handleAlertMenuOpen}
             >
               <Badge badgeContent={69} color="error">
                 <NotificationsIcon />
