@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import '../app.css';
 
 const pages = [
   {
@@ -102,6 +103,10 @@ export default function PrimarySearchAppBar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+// trying to add notification pop up menu
+  const handleAlertMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -136,8 +141,12 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+        <Link to = '/profile' style= {{color: 'black', textDecoration:'none'}}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <Link to ='/myaccount' style= {{color: 'black', textDecoration:'none'}}>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -158,14 +167,14 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <MailIcon className='mailIcon'/>
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <IconButton
           size="large"
@@ -195,7 +204,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#4b88a2ff' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -215,7 +224,7 @@ export default function PrimarySearchAppBar() {
             Needle / Junkeez
           </Typography>
 
-          {/* start of added buttons code */}
+          {/* start of link to pages code */}
           <Typography
             variant="h5"
             noWrap
@@ -239,7 +248,7 @@ export default function PrimarySearchAppBar() {
               <Link to={page.path}
                 key={page.id}
                 // onClick={handleCloseNavMenu}
-                style={{ color: 'white', display: 'block', textDecoration: 'none', margin: '25px' }}
+                style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px', flexbox:'flex', justifyContent: 'space-evenly' }}
               >
                 {page.page}
               </Link>
@@ -258,17 +267,18 @@ export default function PrimarySearchAppBar() {
           </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={456} color="error">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
               aria-label="show 20 new notifications"
               color="inherit"
+              onClick={handleAlertMenuOpen}
             >
-              <Badge badgeContent={20} color="error">
+              <Badge badgeContent={69} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
