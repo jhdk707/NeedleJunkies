@@ -15,6 +15,41 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+
+const pages = [
+{
+    id: 1,
+    page:'Home',
+    path: '/home'
+},
+{
+    id: 2,
+    page: 'My Collection',
+    path: '/mycollection'
+
+},
+{
+    id: 3,
+    page: 'Friends',
+    path: '/friends'
+
+},
+{
+    id: 4,
+    page: 'Donations',
+    path: '/donations'
+
+},
+{
+    id: 5,
+    page: 'Contact',
+    path: '/contact'
+
+},
+]
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -78,6 +113,9 @@ export default function PrimarySearchAppBar() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -173,8 +211,40 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Needle / Junkeez
           </Typography>
+
+          {/* start of added buttons code */}
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Link to = {page.path}
+                key={page.id}
+                // onClick={handleCloseNavMenu}
+                style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px' }}
+              >
+                {page.page}
+              </Link>
+            ))}
+            </Box>
+            {/* end of added buttons code */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
