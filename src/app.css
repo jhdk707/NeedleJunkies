@@ -23,6 +23,10 @@
   --select-color: #bb0a21;
 }
 
+.mailIcon {
+  display: none;
+}
+
 /* EXAMPLES OF HOW TO USE 
 body {
   color: var(--primary-color);
