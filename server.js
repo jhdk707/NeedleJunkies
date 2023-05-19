@@ -3,11 +3,13 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3001;
+const mongodburl =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/needlejunkeez";
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017", {
+  .connect(mongodburl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
