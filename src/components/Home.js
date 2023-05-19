@@ -1,10 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Home(){
-    <>
-    Elo govna let me see ya home
-    </>
+function Home() {
+  return <h1>Elo govna let me see ya home</h1>;
 }
 
-
-export default Home
+export default Home;
