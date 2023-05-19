@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -10,8 +13,13 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/signup", { email, password });
+      const response = await axios.post("/api/signup", {
+        username,
+        email,
+        password,
+      });
       setMessage(response.data.message);
+      setUsername("");
       setEmail("");
       setPassword("");
     } catch (error) {
@@ -24,6 +32,12 @@ const Signup = () => {
     <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleSignup}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Email"
@@ -39,6 +53,13 @@ const Signup = () => {
         <button type="submit">Sign Up</button>
       </form>
       <p>{message}</p>
+      <button
+        type="button"
+        className="btn btn-link"
+        onClick={() => navigate("/")}
+      >
+        Already have an account? Log in here.
+      </button>
     </div>
   );
 };

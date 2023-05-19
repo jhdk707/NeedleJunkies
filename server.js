@@ -7,7 +7,7 @@ const port = 3000;
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:3000", {
+  .connect("mongodb://localhost:27017", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -20,6 +20,7 @@ mongoose
 
 // Create a user schema
 const userSchema = new mongoose.Schema({
+  username: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
 });
@@ -32,7 +33,7 @@ app.use(express.json());
 // Signup endpoint
 app.post("/api/signup", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -44,7 +45,7 @@ app.post("/api/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: "User created successfully" });

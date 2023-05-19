@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
@@ -11,19 +11,20 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 
 function App() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulating a loading delay
-    setTimeout(() => {
-      setIsLoading(false);
-      setShowLoginModal(true);
-    }, 2000);
-  }, []);
+  const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
   const handleLoginModalClose = () => {
     setShowLoginModal(false);
+  };
+
+  const handleShowSignupModal = () => {
+    setShowLoginModal(false);
+    setShowSignupModal(true);
+  };
+
+  const handleSignupModalClose = () => {
+    setShowSignupModal(false);
   };
 
   return (
@@ -32,20 +33,27 @@ function App() {
         <Navigation />
 
         <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/mycollection" element={<Mycollection />} />
           <Route path="/quickadd" element={<Quickadd />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/donations" element={<Donations />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              showLoginModal ? (
+                <Login
+                  onClose={handleLoginModalClose}
+                  onShowSignup={handleShowSignupModal}
+                />
+              ) : null
+            }
+          />
         </Routes>
 
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          showLoginModal && <Login onClose={handleLoginModalClose} />
-        )}
+        {showSignupModal ? <Signup onClose={handleSignupModalClose} /> : null}
       </HashRouter>
     </div>
   );

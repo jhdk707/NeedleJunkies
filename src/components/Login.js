@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -15,6 +16,7 @@ const Login = ({ onClose }) => {
       const response = await axios.post("/api/login", { email, password });
       setMessage(response.data.message);
       setEmail("");
+      setUsername("");
       setPassword("");
       onClose();
     } catch (error) {
@@ -28,10 +30,10 @@ const Login = ({ onClose }) => {
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
