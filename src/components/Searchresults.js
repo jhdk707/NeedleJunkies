@@ -1,58 +1,5 @@
-// import React from 'react';
-// import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-
-// const VinylRecordCard = ({ record }) => {
-//   return (
-//     <Card>
-//       <Card.Img variant="top" src={record.image} />
-//       <Card.Body>
-//         <Card.Title>{record.title}</Card.Title>
-//         <Card.Text>{record.artist}</Card.Text>
-//         <Button variant="primary">Add to Collection</Button>
-//       </Card.Body>
-//     </Card>
-//   );
-// };
-
-// const VinylRecordsList = ({ records }) => {
-//   return (
-//     <Row>
-//       {records.map((record) => (
-//         <Col key={record.id} md={4} sm={6} xs={12}>
-//           <VinylRecordCard record={record} />
-//         </Col>
-//       ))}
-//     </Row>
-//   );
-// };
-
-// const Mycollection = () => {
-//   const records = [
-//     {
-//       id: 1,
-//       title: 'Abbey Road',
-//       artist: 'The Beatles',
-//       image: 'path/to/abbey_road.jpg',
-//     },
-//     {
-//       id: 2,
-//       title: 'Dark Side of the Moon',
-//       artist: 'Pink Floyd',
-//       image: 'path/to/dark_side_of_the_moon.jpg',
-//     },
-//     // Add more vinyl records here...
-//   ];
-
-//   return (
-//     <Container>
-//       <h1>My Vinyl Records Collection</h1>
-//       <VinylRecordsList records={records} />
-//     </Container>
-//   );
-// };
-
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -78,10 +25,47 @@ const RecordImage = styled(CardMedia)(({ theme }) => ({
   height: 200,
 }));
 
-export default function Mycollection({spotifyResults}) {
+export default function Searchresults() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const columnCount = matches ? 4 : 2;
+  const [spotifyResults, setSpotifyResults] = useState ([])
+  const [searchParams] = useSearchParams()
+  console.log(searchParams.get('q'))
+
+  const handleSearch = async (searchTerm) => {
+   const url = `https://spotify23.p.rapidapi.com/search/?q=${searchTerm}&type=albums`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '2b148a14a3msh12fa6ec54fe1b3fp1ed456jsnbd039561a19d',
+            'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+        },
+    };
+
+    try {
+        const response = await fetch(url, options);
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+            setSpotifyResults(result.albums.items)
+        } else {
+            console.error('Error occurred while searching');
+        }
+    } catch (error) {
+        console.error('Error occurred while searching', error);
+    }
+};
+
+useEffect(() => {
+let search = searchParams.get('q')
+if (search){
+    handleSearch(search)  
+}
+  
+
+},[searchParams])
 
   return (
     <RecordGrid container spacing={2} justifyContent="center">

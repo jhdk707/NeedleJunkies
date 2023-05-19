@@ -93,11 +93,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({setSpotifyResults}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // notif icon state variable
+  const [notifAnchorEl, setNotifAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
+  const isNotificationMenuOpen = Boolean(notifAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -105,7 +108,8 @@ export default function PrimarySearchAppBar() {
   };
 // trying to add notification pop up menu
   const handleAlertMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    console.log('target', event.currentTarget.value)
+    setNotifAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -114,7 +118,12 @@ export default function PrimarySearchAppBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
+
+  };
+
+  const handleNotifClose = () => {
+    setNotifAnchorEl(null);
+   
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -123,6 +132,9 @@ export default function PrimarySearchAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+
+  // PROFILE MENU
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -149,6 +161,33 @@ export default function PrimarySearchAppBar() {
       </Link>
     </Menu>
   );
+
+  // NOTIFICATIONS MENU
+
+  const notificationMenuId = 'primary-search-account-notification-menu';
+  const renderNotificationsMenu = (
+    <Menu
+      anchorEl={notifAnchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={notificationMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isNotificationMenuOpen}
+      onClose={handleNotifClose}
+    >
+        <Link to = '/profile' style= {{color: 'black', textDecoration:'none'}}>
+      <MenuItem onClick={handleNotifClose}>Noteys go here bucko</MenuItem>
+      </Link>
+      
+    </Menu>
+  );
+ 
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -255,7 +294,9 @@ export default function PrimarySearchAppBar() {
             ))}
           </Box>
           {/* end of added buttons code */}
-          <SearchFun />
+          <SearchFun 
+          setSpotifyResults={setSpotifyResults}
+          />
           {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -272,22 +313,30 @@ export default function PrimarySearchAppBar() {
                 <MailIcon />
               </Badge>
             </IconButton> */}
+
+            {/*  NOTIFICATION ICON*/}
+
             <IconButton
               size="large"
               aria-label="show 20 new notifications"
               color="inherit"
+              value={'alert'}
               onClick={handleAlertMenuOpen}
             >
               <Badge badgeContent={69} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
+            {/*  PROFILE ICON*/}
+
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
+              value='profile'
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
@@ -310,6 +359,8 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {renderNotificationsMenu}
+      
     </Box>
   );
 }

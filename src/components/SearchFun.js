@@ -2,7 +2,7 @@ import React from "react"
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 
-const SearchFunction = () => {
+const SearchFunction = ({setSpotifyResults}) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = async () => {
@@ -21,6 +21,7 @@ const SearchFunction = () => {
             if (response.ok) {
                 const result = await response.json();
                 console.log(result);
+                setSpotifyResults(result.albums.items)
             } else {
                 console.error('Error occurred while searching');
             }
