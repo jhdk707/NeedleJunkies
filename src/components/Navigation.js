@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SearchFun from "./SearchFun"
+import SearchFunction from "./SearchFunction";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -103,7 +103,7 @@ export default function PrimarySearchAppBar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-// trying to add notification pop up menu
+  // trying to add notification pop up menu
   const handleAlertMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -141,11 +141,11 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-        <Link to = '/profile' style= {{color: 'black', textDecoration:'none'}}>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <Link to='/profile' style={{ color: 'black', textDecoration: 'none' }}>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
-      <Link to ='/myaccount' style= {{color: 'black', textDecoration:'none'}}>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link to='/myaccount' style={{ color: 'black', textDecoration: 'none' }}>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </Link>
     </Menu>
   );
@@ -248,14 +248,16 @@ export default function PrimarySearchAppBar() {
               <Link to={page.path}
                 key={page.id}
                 // onClick={handleCloseNavMenu}
-                style={{ color: 'white', display: 'block', textDecoration:'none', margin: '25px', flexbox:'flex', justifyContent: 'space-evenly' }}
+                style={{ color: 'white', display: 'block', textDecoration: 'none', margin: '25px', flexbox: 'flex', justifyContent: 'space-evenly' }}
               >
                 {page.page}
               </Link>
             ))}
           </Box>
           {/* end of added buttons code */}
-          <SearchFun />
+          <SearchFunction />
+          {/* <SearchDiscogsAlbum /> */}
+          {/* <SearchSpotAlbum /> */}
           {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
