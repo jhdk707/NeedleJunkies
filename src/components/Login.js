@@ -13,7 +13,7 @@ const Login = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", { email, password });
+      const response = await axios.post("/api/login", { username, password });
       setMessage(response.data.message);
       setEmail("");
       setUsername("");
