@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-function Friends(){
-    <>
-    Elo FRIEND spare a hay penny wontcha
-    </>
+function Friends() {
+  {
+    return <h1>Elo govna let me see ya buddies</h1>;
+  }
 }
 
-
-
-export default Friends
+export default Friends;

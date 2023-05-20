@@ -1,12 +1,9 @@
-import React from 'react';
+import React from "react";
 
-function Profile(){
-    <>
-    Elo govna let me see ya home
-    </>
+function Profile() {
+  {
+    return <h1>Elo govna let me see ya home</h1>;
+  }
 }
 
-
-
-
-export default Profile
+export default Profile;
