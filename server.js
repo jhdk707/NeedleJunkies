@@ -1,11 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+require('dotenv').config();
+const { User } = require("./src/models/userSchema");
+
+
+
+
+
+
 
 const app = express();
 const port = process.env.PORT || 3001;
 const mongodburl =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/needlejunkeez";
+process.env.MONGODB_URI || "mongodb+srv://jhdk707:" + process.env.MONGODB_PASSWORD + "@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority";
 
 // Connect to MongoDB
 mongoose
@@ -20,20 +28,15 @@ mongoose
     console.error("Error connecting to MongoDB:", error);
   });
 
-// Create a user schema
+
+
 // const userSchema = new mongoose.Schema({
-//   username: { type: String, required: true },
-//   email: { type: String, required: true },
+//   username: { type: String, required: true, unique: true },
+//   email: { type: String, required: true, unique: true },
 //   password: { type: String, required: true },
 // });
 
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-const User = mongoose.model("User", userSchema, "users");
+// const User = mongoose.model("User", userSchema, "users");
 
 // Middleware for parsing JSON requests
 app.use(express.json());
@@ -65,29 +68,6 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-// Login endpoint
-// app.post("/api/login", async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     // Check if user exists
-//     const user = await User.findOne({ $or: [{ email }, { username }] });
-//     if (!user) {
-//       return res.status(401).json({ message: "Invalid credentials" });
-//     }
-
-//     // Compare the password
-//     const isPasswordValid = await bcrypt.compare(password, user.password);
-//     if (!isPasswordValid) {
-//       return res.status(401).json({ message: "Invalid credentials" });
-//     }
-
-//     res.status(200).json({ message: "Login successful" });
-//   } catch (error) {
-//     console.error("Error logging in:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
 
 // Login endpoint
 app.post("/api/login", async (req, res) => {
