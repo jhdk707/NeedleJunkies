@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
-const { User } = require("./src/models/userSchema");
+// const { User } = require("./src/models/userSchema");
 
 
 
@@ -30,13 +30,13 @@ mongoose
 
 
 
-// const userSchema = new mongoose.Schema({
-//   username: { type: String, required: true, unique: true },
-//   email: { type: String, required: true, unique: true },
-//   password: { type: String, required: true },
-// });
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
 
-// const User = mongoose.model("User", userSchema, "users");
+const User = mongoose.model("User", userSchema, "users");
 
 // Middleware for parsing JSON requests
 app.use(express.json());
