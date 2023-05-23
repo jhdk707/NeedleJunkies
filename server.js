@@ -36,20 +36,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 const User = mongoose.model("User", userSchema, "users");
-// Set up Apollo Server
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers: [albumResolvers],
-//   context: () => ({
-//     models: {
-//       Album,
-//       // Add more models here if needed
-//     },
-//   }),
-// });
-// // Middleware for parsing JSON requests
-// app.use(express.json());
-// server.applyMiddleware({ app }); // Apply the Apollo Server middleware to Express
+
 async function startApolloServer() {
   const server = new ApolloServer({ typeDefs, resolvers: [albumResolvers] });
   await server.start();
@@ -104,5 +91,26 @@ async function startApolloServer() {
     console.log(`Server ready at http://localhost:3001${server.graphqlPath}`)
   );
 }
+
+
+//
+const { createAlbum } = require("./src/resolvers/createAlbum");
+
+// Define a route to handle the saving of the album
+app.post("/saveAlbum", async (req, res) => {
+  try {
+    const albumData = req.body; // Assuming the album data is sent in the request body
+    const savedAlbum = await createAlbum(null, { input: albumData });
+
+    // Return the saved album as the response
+    res.json(savedAlbum);
+  } catch (error) {
+    console.error("Error saving album:", error);
+    // Handle the error and send an appropriate response
+    res.status(500).json({ error: "Failed to save album" });
+  }
+});
+
 // Call the function to start the Apollo server
 startApolloServer();
+
