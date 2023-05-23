@@ -23,6 +23,11 @@
   --select-color: #bb0a21;
 }
 
+.body {
+  background-color: var(--primary-color);
+}
+
+
 .mailIcon {
   display: none;
 }
