@@ -1,11 +1,9 @@
 import React from "react";
 
-const userSearch = localStorage.getItem("Search Term");
-
-const spotifyAlbumSearch = async () => {
+const spotifyAlbumSearch = async (searchTerm) => {
     // Perform search logic using searchTerm
     const url = `https://spotify23.p.rapidapi.com/search/?q=${encodeURIComponent(
-        userSearch
+        searchTerm
     )}&type=albums`;
 
     const options = {
@@ -22,6 +20,7 @@ const spotifyAlbumSearch = async () => {
         if (response.ok) {
             const result = await response.json();
             console.log(result);
+
         } else {
             console.error('Error occurred while searching');
         }
@@ -32,12 +31,11 @@ const spotifyAlbumSearch = async () => {
 };
 
 function SpotResults() {
-
-    spotifyAlbumSearch();
-
     return (
         <>does this appear?</>
     )
 }
+
+SpotResults.search = spotifyAlbumSearch;
 
 export default SpotResults;
