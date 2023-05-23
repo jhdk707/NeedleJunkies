@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TextField, Button, Menu, MenuItem } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-const Album = require("../models/album.js"); // import album model for database accsess
+import { Link } from "react-router-dom";
+import SpotResults from "./SpotResults";
 
 function SearchFunction() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +14,7 @@ function SearchFunction() {
     if (selectedOption === "Search For Album" && searchTerm !== "") {
       // Perform search for album
       console.log("Performing search for album...");
+      localStorage.setItem("Search Term", searchTerm);
       searchSpotAlbum();
     } else if (selectedOption === "Search For Sale" && searchTerm !== "") {
       // Perform search for sale
@@ -80,45 +82,33 @@ function SearchFunction() {
 
   // };
 
-  ///////////////////////// JESSE SEARCH FUNCTION CODE WITH DATABASE STORE ///////////////////////
   const searchSpotAlbum = async () => {
-    try {
-      // Perform search logic using searchTerm
-      const url = `https://spotify23.p.rapidapi.com/search/?q=${searchTerm}&type=albums`;
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": process.env.REACT_APP_SPOTIFY_API_KEY,
-          "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
-        },
-      };
+    // // Perform search logic using searchTerm
+    // const url = `https://spotify23.p.rapidapi.com/search/?q=${encodeURIComponent(
+    //     searchTerm
+    // )}&type=albums`;
 
-      const response = await fetch(url, options);
-      if (response.ok) {
-        const result = await response.json();
-        console.log(result);
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'X-RapidAPI-Key': process.env.REACT_APP_SPOTIFY_API_KEY,
+    //         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+    //     },
+    // };
 
-        // Extract the necessary information from the search results
-        const { artist, album, tracks, releaseDate, genre } = result;
+    // try {
+    //     const response = await fetch(url, options);
 
-        // Create a new Album document
-        const newAlbum = new Album({
-          artist,
-          album,
-          tracks,
-          releaseDate,
-          genre,
-        });
-
-        // Save the new album to MongoDB
-        await newAlbum.save();
-        console.log("Album saved to MongoDB:", newAlbum);
-      } else {
-        console.error("Error occurred while searching");
-      }
-    } catch (error) {
-      console.error("Error occurred while searching", error);
-    }
+    //     if (response.ok) {
+    //         const result = await response.json();
+    //         console.log(result);
+    //     } else {
+    //         console.error('Error occurred while searching');
+    //     }
+    // } catch (error) {
+    //     console.error('Error occurred while searching', error);
+    // }
+    <SpotResults />;
   };
 
   const searchDiscogsAlbum = async () => {
@@ -142,32 +132,6 @@ function SearchFunction() {
       }
     } catch (error) {
       console.error("Error occurred while searching", error);
-    }
-  };
-
-  const handleSearch = (selectedOption) => {
-    switch (selectedOption) {
-      case "Search For Album":
-        // Perform search for album
-        console.log("Performing search for album...");
-        searchSpotAlbum(localStorage.getItem("Search Term:"));
-        break;
-      case "Search For Sale":
-        // Perform search for sale
-        console.log("Performing search for sale...");
-        searchDiscogsAlbum(localStorage.getItem("Search Term:"));
-        break;
-      case "Get All Users":
-        // Get all users
-        console.log("Getting all users...");
-        break;
-      case "Get Single User":
-        // Get single user
-        console.log("Getting single user...");
-        break;
-      default:
-        console.log("Invalid search option");
-        break;
     }
   };
 
@@ -203,7 +167,11 @@ function SearchFunction() {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={() => handleOptionSelect("Search For Album")}>
+        <MenuItem
+          onClick={() => handleOptionSelect("Search For Album")}
+          component={Link}
+          to="/search/spot"
+        >
           Search For Album
         </MenuItem>
         <MenuItem onClick={() => handleOptionSelect("Search For Sale")}>

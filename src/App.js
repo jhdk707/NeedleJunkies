@@ -9,6 +9,7 @@ import Mycollection from "./components/Mycollection";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import SpotResults from "./components/SpotResults";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(true);
@@ -40,6 +41,7 @@ function App() {
           <Route path="/quickadd" element={<Quickadd />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/search/spot" element={<SpotResults />} />
           <Route
             path="/"
             element={
