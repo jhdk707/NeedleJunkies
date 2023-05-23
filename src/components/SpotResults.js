@@ -29,7 +29,6 @@ const spotifyAlbumSearch = async (searchTerm) => {
     }
 
 };
-
 function SpotResults() {
     return (
         <>does this appear?</>

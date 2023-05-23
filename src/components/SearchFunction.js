@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Button, Menu, MenuItem } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
-import SpotResults from './SpotResults';
+import React, { useState, useEffect } from "react";
+import { TextField, Button, Menu, MenuItem } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
+import SpotResults from "./SpotResults";
 import DiscResults from './DiscResults';
+const Album = require("../models/album.js"); // import album model for database accsess
 
 function SearchFunction() {
     const [searchTerm, setSearchTerm] = useState('');
