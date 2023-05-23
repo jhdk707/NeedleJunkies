@@ -4,12 +4,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import SpotResults from "./SpotResults";
-
 function SearchFunction() {
   const [searchTerm, setSearchTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
-
   useEffect(() => {
     if (selectedOption === "Search For Album" && searchTerm !== "") {
       // Perform search for album
@@ -22,24 +20,19 @@ function SearchFunction() {
       searchDiscogsAlbum();
     }
   }, [selectedOption, searchTerm]);
-
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     handleMenuClose();
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Search Term:", searchTerm);
@@ -54,40 +47,11 @@ function SearchFunction() {
       searchDiscogsAlbum();
     }
   };
-  ////////////// CODE TO REPLACE WHEN NEW SEARCH FUNTION W/ RENDER WORKS //////////////////////
-  // const searchSpotAlbum = async () => {
-  //     // Perform search logic using searchTerm
-  //     const url = `https://spotify23.p.rapidapi.com/search/?q=${searchTerm}&type=albums`;
-
-  //     const options = {
-  //         method: 'GET',
-  //         headers: {
-  //             'X-RapidAPI-Key': process.env.REACT_APP_SPOTIFY_API_KEY,
-  //             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-  //         },
-  //     };
-
-  //     try {
-  //         const response = await fetch(url, options);
-
-  //         if (response.ok) {
-  //             const result = await response.json();
-  //             console.log(result);
-  //         } else {
-  //             console.error('Error occurred while searching');
-  //         }
-  //     } catch (error) {
-  //         console.error('Error occurred while searching', error);
-  //     }
-
-  // };
-
   const searchSpotAlbum = async () => {
     // // Perform search logic using searchTerm
     // const url = `https://spotify23.p.rapidapi.com/search/?q=${encodeURIComponent(
     //     searchTerm
     // )}&type=albums`;
-
     // const options = {
     //     method: 'GET',
     //     headers: {
@@ -95,10 +59,8 @@ function SearchFunction() {
     //         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
     //     },
     // };
-
     // try {
     //     const response = await fetch(url, options);
-
     //     if (response.ok) {
     //         const result = await response.json();
     //         console.log(result);
@@ -110,7 +72,6 @@ function SearchFunction() {
     // }
     <SpotResults />;
   };
-
   const searchDiscogsAlbum = async () => {
     // Perform search logic using searchTerm
     const url = `https://api.discogs.com/database/search?release_title=${encodeURIComponent(
@@ -120,10 +81,8 @@ function SearchFunction() {
       "User-Agent": "Your App Name",
       Authorization: `Discogs token=${process.env.REACT_APP_DISCOGS_API_KEY}`,
     };
-
     try {
       const response = await fetch(url, { headers });
-
       if (response.ok) {
         const result = await response.json();
         console.log(result);
@@ -134,7 +93,6 @@ function SearchFunction() {
       console.error("Error occurred while searching", error);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -187,5 +145,4 @@ function SearchFunction() {
     </form>
   );
 }
-
 export default SearchFunction;
