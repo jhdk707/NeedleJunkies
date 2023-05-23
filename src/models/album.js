@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const albumSchema = new mongoose.Schema({
   artist: { type: String, required: true },
@@ -13,6 +13,8 @@ const albumSchema = new mongoose.Schema({
   genre: { type: String, required: true },
 });
 
-const Album = mongoose.model('Album', albumSchema);
+const Album = mongoose.model("Album", albumSchema);
 
 module.exports = Album;
+
+/// insert the following code into

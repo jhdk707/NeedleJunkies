@@ -1,19 +1,28 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-require('dotenv').config();
+require("dotenv").config();
+//const { ApolloServer } = require("apollo-server");
+const { ApolloServer } = require("apollo-server-express");
+
 // const { User } = require("./src/models/userSchema");
 
+// Import your Mongoose models
+const Album = require("./src/models/album");
 
+// Import your GraphQL resolvers
+const albumResolvers = require("./src/resolvers/albumResolvers");
 
-
-
-
+// Import your type definitions (schemas)
+const typeDefs = require("./src/resolvers/typeDefs");
 
 const app = express();
 const port = process.env.PORT || 3001;
 const mongodburl =
-process.env.MONGODB_URI || "mongodb+srv://jhdk707:" + process.env.MONGODB_PASSWORD + "@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority";
+  process.env.MONGODB_URI ||
+  "mongodb+srv://jhdk707:" +
+    process.env.MONGODB_PASSWORD +
+    "@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority";
 
 // Connect to MongoDB
 mongoose
@@ -28,8 +37,6 @@ mongoose
     console.error("Error connecting to MongoDB:", error);
   });
 
-
-
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -38,8 +45,34 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema, "users");
 
-// Middleware for parsing JSON requests
-app.use(express.json());
+// Set up Apollo Server
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers: [albumResolvers],
+//   context: () => ({
+//     models: {
+//       Album,
+//       // Add more models here if needed
+//     },
+//   }),
+// });
+
+// // Middleware for parsing JSON requests
+// app.use(express.json());
+// server.applyMiddleware({ app }); // Apply the Apollo Server middleware to Express
+
+async function startApolloServer() {
+  const server = new ApolloServer({ typeDefs, resolvers });
+  await server.start();
+
+  const app = express();
+  app.use(express.json());
+  server.applyMiddleware({ app });
+
+  app.listen({ port: 3001 }, () =>
+    console.log(`Server ready at http://localhost:3001${server.graphqlPath}`)
+  );
+}
 
 // Signup endpoint
 app.post("/api/signup", async (req, res) => {
@@ -68,7 +101,6 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-
 // Login endpoint
 app.post("/api/login", async (req, res) => {
   try {
@@ -91,7 +123,16 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Start the Node server
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
+
+// // Start Apollo server
+// server.listen().then(({ url }) => {
+//   console.log(`Server running at ${url}`);
+// });
+
+// app.listen({ port: 3001 }, () =>
+//   console.log(`Server ready at http://localhost:3001${server.graphqlPath}`)
+// );
