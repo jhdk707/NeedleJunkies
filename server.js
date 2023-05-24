@@ -13,11 +13,17 @@ const albumResolvers = require("./src/resolvers/albumResolvers");
 const typeDefs = require("./src/resolvers/typeDefs");
 const app = express();
 const port = process.env.PORT || 3001;
+// const mongodburl =
+//   process.env.MONGODB_URI ||
+//   "mongodb+srv://jhdk707:" +
+//     process.env.MONGODB_PASSWORD +
+//     "@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority";
+
+// dotenv process for DB accsess
 const mongodburl =
   process.env.MONGODB_URI ||
-  "mongodb+srv://jhdk707:" +
-    process.env.MONGODB_PASSWORD +
-    "@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.zmm789m.mongodb.net/?retryWrites=true&w=majority`;
+
 // Connect to MongoDB
 mongoose
   .connect(mongodburl, {
@@ -92,7 +98,6 @@ async function startApolloServer() {
   );
 }
 
-
 //
 const { createAlbum } = require("./src/resolvers/createAlbum");
 
@@ -113,4 +118,3 @@ app.post("/saveAlbum", async (req, res) => {
 
 // Call the function to start the Apollo server
 startApolloServer();
-
