@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import SearchFunction from "./SearchFunction";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -30,18 +31,13 @@ const pages = [
     id: 2,
     page: 'My Collection',
     path: '/mycollection'
-
   },
   {
     id: 3,
     page: 'Friends',
     path: '/friends'
-
   }
-
-
 ];
-
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -84,10 +80,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  // notif icon state variable
-  const [notifAnchorEl, setNotifAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [notifAnchorEl, setNotifAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [isSignedIn, setIsSignedIn] = useState(false); // State variable for signed-in status
 
   const isMenuOpen = Boolean(anchorEl);
   const isNotificationMenuOpen = Boolean(notifAnchorEl);
@@ -96,9 +92,9 @@ export default function PrimarySearchAppBar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  // trying to add notification pop up menu
+
   const handleAlertMenuOpen = (event) => {
-    console.log('target', event.currentTarget.value)
+    console.log('target', event.currentTarget.value);
     setNotifAnchorEl(event.currentTarget);
   };
 
@@ -108,25 +104,29 @@ export default function PrimarySearchAppBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-
   };
 
   const handleNotifClose = () => {
     setNotifAnchorEl(null);
-   
   };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const handleSignOut = () => {
+    // Perform sign-out logic if needed
 
+    // Redirect to the sign-in page and trigger a full page reload
+    window.location.href = '/';
+  };
 
-  // PROFILE MENU
 
   const menuId = 'primary-search-account-menu';
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -144,10 +144,24 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <Link to='/profile' style={{ color: 'black', textDecoration: 'none' }}>
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        {isSignedIn ? (
+          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        ) : null}
       </Link>
       <Link to='/myaccount' style={{ color: 'black', textDecoration: 'none' }}>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        {isSignedIn ? (
+          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        ) : null}
+      </Link>
+      {!isSignedIn ? (
+        <MenuItem onClick={handleSignOut}>Sign in</MenuItem>
+      ) : (
+        <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+      )}
+      <Link to='/signup' style={{ color: 'black', textDecoration: 'none' }}>
+        {!isSignedIn ? (
+          <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+        ) : null}
       </Link>
     </Menu>
   );

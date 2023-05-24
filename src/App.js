@@ -55,7 +55,6 @@ function App() {
           <Route path="/quickadd" element={<Quickadd />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/donations" element={<Donations />} />
-          <Route path="/search/spot" element={<SpotResults />} />
           <Route
             path="/"
             element={
