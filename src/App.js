@@ -16,6 +16,7 @@ import { ThemeProvider } from "@emotion/react";
 import Theme from './Theme'
 // import Home from "./components/Home";
 import SpotResults from "./components/SpotResults";
+import DiscResults from "./components/DiscResults";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(true);
@@ -55,6 +56,8 @@ function App() {
           <Route path="/quickadd" element={<Quickadd />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/search/spot" element={<SpotResults />} />
+          <Route path="/search/disc" element={<DiscResults />} />
           <Route
             path="/"
             element={
