@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../app.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div id="signupStyle">
       <h1>Sign Up</h1>
       <form onSubmit={handleSignup}>
         <input

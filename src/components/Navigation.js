@@ -1,41 +1,51 @@
 import * as React from "react";
 import SearchFunction from "./SearchFunction";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import "../app.css";
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import '../app.css';
+import Splash from './Splash';
 
 const pages = [
   {
-    id: 1,
+    id: 0,
     page: "Home",
     path: "/home",
   },
   {
-    id: 2,
-    page: "My Collection",
-    path: "/mycollection",
+    id: 0,
+    page: 'Home',
+    path: '/home'
   },
   {
-    id: 3,
-    page: "Friends",
-    path: "/friends",
+    id: 1,
+    page: 'My Collection',
+    path: '/mycollection'
+
   },
+  {
+    id: 2,
+    page: 'Friends',
+    path: '/friends'
+
+  }
+
+
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -107,6 +117,7 @@ export default function PrimarySearchAppBar() {
 
   const handleNotifClose = () => {
     setNotifAnchorEl(null);
+
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -165,11 +176,17 @@ export default function PrimarySearchAppBar() {
     >
       <Link to="/profile" style={{ color: "black", textDecoration: "none" }}>
         <MenuItem onClick={handleNotifClose}>NOTIFICATIONS</MenuItem>
+      <Link to='/profile' style={{ color: 'black', textDecoration: 'none' }}>
+        <MenuItem onClick={handleNotifClose}>NOTIFICATIONS</MenuItem>
       </Link>
+
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
+
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -225,7 +242,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#4b88a2ff" }}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -233,18 +250,21 @@ export default function PrimarySearchAppBar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Needle / Junkeez
-          </Typography>
-
+          </IconButton> */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Link to="/" id="splashNeedle">
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+              >
+                Needle / Junkeez
+              </Typography>
+            </Link>
+          </Box>
           {/* start of link to pages code */}
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -259,8 +279,11 @@ export default function PrimarySearchAppBar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          ></Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          >
+
+          </Typography> */}
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Link
                 to={page.path}
@@ -280,18 +303,8 @@ export default function PrimarySearchAppBar() {
             ))}
           </Box>
           {/* end of added buttons code */}
-          {/* <SearchFunction /> */}
-          {/* <SearchDiscogsAlbum /> */}
-          {/* <SearchSpotAlbum /> */}
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
+          <SearchFunction />
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -346,6 +359,7 @@ export default function PrimarySearchAppBar() {
       {renderMobileMenu}
       {renderMenu}
       {renderNotificationsMenu}
+
     </Box>
   );
 }
