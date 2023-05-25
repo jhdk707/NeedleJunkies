@@ -28,11 +28,6 @@ const pages = [
     path: "/home",
   },
   {
-    id: 0,
-    page: "Home",
-    path: "/home",
-  },
-  {
     id: 1,
     page: "My Collection",
     path: "/mycollection",
