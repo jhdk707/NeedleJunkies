@@ -9,6 +9,7 @@ const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loggedInUsername, setLoggedInUsername] = useState(""); // New state for the logged-in username
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,9 +20,10 @@ const Login = ({ onClose }) => {
       setEmail("");
       setUsername("");
       setPassword("");
+      setLoggedInUsername(response.data.username); // Set the logged-in username
       onClose();
       // redirect to home page after login
-      navigate("/home");
+      navigate("/home"); // Pass the username as part of the route state);
     } catch (error) {
       console.error("Error logging in:", error);
       setMessage("Failed to log in");

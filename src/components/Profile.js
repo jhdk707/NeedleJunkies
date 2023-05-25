@@ -1,5 +1,5 @@
-import React from 'react';
-import { Avatar, Typography, Button, Box, Grid } from '@mui/material';
+import React from "react";
+import { Avatar, Typography, Button, Box, Grid } from "@mui/material";
 
 const Profile = () => {
   return (
