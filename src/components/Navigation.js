@@ -1,25 +1,25 @@
 import * as React from "react";
 import SearchFunction from "./SearchFunction";
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import '../app.css';
-import Splash from './Splash';
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import "../app.css";
+import Splash from "./Splash";
 
 const pages = [
   {
@@ -29,23 +29,19 @@ const pages = [
   },
   {
     id: 0,
-    page: 'Home',
-    path: '/home'
+    page: "Home",
+    path: "/home",
   },
   {
     id: 1,
-    page: 'My Collection',
-    path: '/mycollection'
-
+    page: "My Collection",
+    path: "/mycollection",
   },
   {
     id: 2,
-    page: 'Friends',
-    path: '/friends'
-
-  }
-
-
+    page: "Friends",
+    path: "/friends",
+  },
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -117,7 +113,6 @@ export default function PrimarySearchAppBar() {
 
   const handleNotifClose = () => {
     setNotifAnchorEl(null);
-
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -176,17 +171,14 @@ export default function PrimarySearchAppBar() {
     >
       <Link to="/profile" style={{ color: "black", textDecoration: "none" }}>
         <MenuItem onClick={handleNotifClose}>NOTIFICATIONS</MenuItem>
-      <Link to='/profile' style={{ color: 'black', textDecoration: 'none' }}>
+      </Link>
+      <Link to="/profile" style={{ color: "black", textDecoration: "none" }}>
         <MenuItem onClick={handleNotifClose}>NOTIFICATIONS</MenuItem>
       </Link>
-
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -251,13 +243,13 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link to="/" id="splashNeedle">
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ display: { xs: 'none', sm: 'block' } }}
+                sx={{ display: { xs: "none", sm: "block" } }}
               >
                 Needle / Junkeez
               </Typography>
@@ -283,7 +275,7 @@ export default function PrimarySearchAppBar() {
 
           </Typography> */}
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
                 to={page.path}
@@ -359,7 +351,6 @@ export default function PrimarySearchAppBar() {
       {renderMobileMenu}
       {renderMenu}
       {renderNotificationsMenu}
-
     </Box>
   );
 }
