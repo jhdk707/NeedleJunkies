@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Typography, Card, CardContent, CardMedia, Avatar } from '@mui/material';
+import { Box, Typography, Card, CardContent, CardMedia, Avatar, TextField, Button } from '@mui/material';
 import { styled } from '@mui/system';
+import MyTech from "../MyTech";
 
 const HomePage = () => {
   const user = { name: 'John Doe' }; // Simulated user data
@@ -117,25 +118,31 @@ const HomePage = () => {
             ))}
           </ol>
         </Box>
-        <Box>
+        <MyTech />
+        {/* <Box>
           <Typography variant="h6">My Tech:</Typography>
           <Box mt={2}>
             <Typography>Turntable:</Typography>
-            {/* Add input or box component here for Turntable */}
+            <TextField label="Turntable Input" />
           </Box>
           <Box mt={2}>
             <Typography>Amp:</Typography>
-            {/* Add input or box component here for Amp */}
+            <TextField label="Amp Input" />
           </Box>
           <Box mt={2}>
             <Typography>Speakers:</Typography>
-            {/* Add input or box component here for Speakers */}
+            <TextField label="Speakers Input" />
           </Box>
           <Box mt={2}>
             <Typography>Other Gear:</Typography>
-            {/* Add input or box component here for Other Gear */}
+            <TextField label="Other Gear Input" />
           </Box>
-        </Box>
+          <Box mt={2}>
+            <Button variant="contained" color="primary">
+              Update
+            </Button>
+          </Box>
+        </Box> */}
       </div>
     </div>
   );

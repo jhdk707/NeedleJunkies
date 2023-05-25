@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../app.css";
 
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Login = ({ onClose }) => {
   };
 
   return (
-    <div>
+    <div id="loginStyle">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input
