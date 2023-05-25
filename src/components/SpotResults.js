@@ -1,6 +1,6 @@
 import React from "react";
 import AlbumSaveButton from "./AlbumSaveButton"
-let result = null;
+// let result;
 
 const spotifyAlbumSearch = async (searchTerm) => {
 
@@ -19,11 +19,10 @@ const spotifyAlbumSearch = async (searchTerm) => {
 
     try {
         const response = await fetch(url, options);
+        const result = await response.json();
 
         if (response.ok) {
-            result = await response.json();
             console.log(result);
-            console.log(document.querySelector(".test"));
             document.querySelector("#artist").textContent = result.albums.items[0].data.artists.items[0].profile.name
         } else {
             console.error('Error occurred while searching');
@@ -40,13 +39,8 @@ function SpotResults() {
                 {/* <img src={coverArtUrl} alt={name} /> */}
                 <h3 id="query"></h3>
                 <p id="artist"></p>
-                <AlbumSaveButton albumData={result} />
-
+                <AlbumSaveButton />
             </div>
-            {result}
-            <p className="test">
-
-            </p>
         </>
     )
 }
