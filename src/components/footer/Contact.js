@@ -1,22 +1,22 @@
-import React from 'react';
-import { Typography, Container, Grid, Paper, Avatar } from '@mui/material';
+import React from "react";
+import { Typography, Container, Grid, Paper, Avatar } from "@mui/material";
 
 const developers = [
   {
-    name: 'Jesse Hudak',
-    photoUrl: 'https://example.com/developer1.jpg',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: "Jesse Hudak",
+    photoUrl: "https://example.com/developer1.jpg",
+    bio: "Coder. Foodie. Music Fanatic & Audiophile. Know-it-all, but wears dunce cap.",
   },
   {
-    name: 'Tyler Dinslage',
-    photoUrl: 'https://example.com/developer2.jpg',
-    bio: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: "Tyler Dinslage",
+    photoUrl: "https://example.com/developer2.jpg",
+    bio: "Dirtbag. Hippie. Snowboard Bum. Coder. Maybe father of many. Wizard. Scholar.",
   },
   {
-    name: 'Jeremy McCarter',
-    photoUrl: 'https://example.com/developer2.jpg',
-    bio: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  }
+    name: "Jeremy McCarter",
+    photoUrl: "https://example.com/developer2.jpg",
+    bio: "Cat dad. Cute. Has girlfriend (I promise). Lives by the sea and swims with dolphins. Raised by otters. Silky chest hair. Smooth everywhere else. Often mistaken for Favio or Flava Flav. ",
+  },
   // Add more developers here
 ];
 
@@ -29,7 +29,7 @@ const Contact = () => {
       <Grid container spacing={4}>
         {developers.map((developer, index) => (
           <Grid item xs={12} key={index}>
-            <Paper sx={{ p: 3, width: '100%' }}>
+            <Paper sx={{ p: 3, width: "100%" }}>
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs={3}>
                   <Avatar
