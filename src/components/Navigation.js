@@ -28,11 +28,6 @@ const pages = [
     path: "/home",
   },
   {
-    id: 0,
-    page: "Home",
-    path: "/home",
-  },
-  {
     id: 1,
     page: "My Collection",
     path: "/mycollection",
@@ -41,6 +36,16 @@ const pages = [
     id: 2,
     page: "Friends",
     path: "/friends",
+  },
+  {
+    id: 3,
+    page: "Search Spotify",
+    path: "/search/spot",
+  },
+  {
+    id: 3,
+    page: "Search Discogs",
+    path: "/search/disc",
   },
 ];
 
