@@ -1,9 +1,9 @@
 import React from "react";
 import AlbumSaveButton from "./AlbumSaveButton";
 
-const AlbumCard = ({ albumData }) => {
-  const { name, artist, coverArtUrl } = albumData;
-
+const AlbumCard = (props) => {
+  const { name, artist, coverArtUrl, uri } = props;
+  const albumData = { name, artist, coverArtUrl, uri };
   return (
     <div className="album-card">
       <img src={coverArtUrl} alt={name} />

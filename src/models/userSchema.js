@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+// user schema to fine and compare users in the database
+const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema, "users");
 
-module.exports = User;
+module.exports = { userSchema, User };
