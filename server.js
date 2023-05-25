@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
+const {signToken} = require('./server/utils/auth')
 //const { ApolloServer } = require("apollo-server");
 const { ApolloServer } = require("apollo-server-express");
 // const { User } = require("./src/models/userSchema");
@@ -13,6 +14,8 @@ const albumResolvers = require("./src/resolvers/albumResolvers");
 const typeDefs = require("./src/resolvers/typeDefs");
 const app = express();
 const port = process.env.PORT || 3001;
+const jwt = require('jsonwebtoken');
+const AuthService = require ('./src/utils/Auth')
 // const mongodburl =
 //   process.env.MONGODB_URI ||
 //   "mongodb+srv://jhdk707:" +
@@ -77,6 +80,7 @@ async function startApolloServer() {
   // Login endpoint
   app.post("/api/login", async (req, res) => {
     // Login logic here
+    // console.log('eee')
     try {
       const { username, password } = req.body;
       const user = await User.findOne({ username });
@@ -87,7 +91,9 @@ async function startApolloServer() {
       if (!isPasswordValid) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      res.status(200).json({ message: "Login successful" });
+      // const token = AuthService.signToken(user)
+      res.status(200).json({ message: "Login successful" }); 
+      // token,user,
     } catch (error) {
       console.error("Error logging in:", error);
       res.status(500).json({ message: "Internal server error" });

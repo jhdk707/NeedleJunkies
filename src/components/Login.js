@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// import AuthService from '../utils/Auth'
 
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
@@ -14,6 +15,9 @@ const Login = ({ onClose }) => {
 
     try {
       const response = await axios.post("/api/login", { username, password });
+      // const {token, user} = response
+      // const userId = user._id 
+      // AuthService.login(token) //userid
       setMessage(response.data.message);
       setEmail("");
       setUsername("");

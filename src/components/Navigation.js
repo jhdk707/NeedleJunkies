@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import { useState } from 'react';
 import SearchFunction from "./SearchFunction";
 import { styled, alpha } from '@mui/material/styles';
@@ -20,6 +21,9 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import '../app.css';
+// import AuthService from '../utils/Auth'
+import decode from 'jwt-decode'
+// const user = AuthService.getProfile().data
 
 const pages = [
   {
@@ -117,13 +121,36 @@ export default function PrimarySearchAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+//   const token = AuthService.getToken()
+//   const tokenRegex = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_.+/=]*$/;
+// const isValidToken = tokenRegex.test(token);
+// console.log(isValidToken)
   const handleSignOut = () => {
-    // Perform sign-out logic if needed
-
-    // Redirect to the sign-in page and trigger a full page reload
-    window.location.href = '/';
+    try {
+      // AuthService.logout();
+      setIsSignedIn(false);
+      handleMenuClose();
+    } catch (error) {
+      console.error('Error while signing out:', error);
+      // Handle error, display a message, or perform other actions as needed
+    }
   };
+  // window.location.href = '/';
+  // useEffect(() => {
+  //   // Check if the user is signed in on component mount
+  //   checkIfSignedIn();
+  // }, []);
 
+  // const checkIfSignedIn = () => {
+  //   try {
+  //     // const token = AuthService.getToken();
+  //     // const signedIn = token && !AuthService.isTokenExpired(token);
+  //     setIsSignedIn(signedIn);
+  //   } catch (error) {
+  //     console.error('Error while checking if signed in:', error);
+  //     setIsSignedIn(false); // Set signed-in state to false in case of error
+  //   }
+  // };
 
   const menuId = 'primary-search-account-menu';
 
@@ -153,11 +180,14 @@ export default function PrimarySearchAppBar() {
           <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         ) : null}
       </Link>
+      <Link to ='/' style={{ color: 'black', textDecoration: 'none' }}>
       {!isSignedIn ? (
         <MenuItem onClick={handleSignOut}>Sign in</MenuItem>
       ) : (
+        
         <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
       )}
+      </Link>
       <Link to='/signup' style={{ color: 'black', textDecoration: 'none' }}>
         {!isSignedIn ? (
           <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
@@ -165,7 +195,7 @@ export default function PrimarySearchAppBar() {
       </Link>
     </Menu>
   );
-
+ 
   // NOTIFICATIONS MENU
 
   const notificationMenuId = 'primary-search-account-notification-menu';
@@ -263,7 +293,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
+           > 
             Needle / Junkeez
           </Typography>
 
