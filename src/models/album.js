@@ -19,11 +19,11 @@
 
 const mongoose = require("mongoose");
 const albumSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+  // userId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User",
+  //   required: true,
+  // },
   uri: {
     type: String,
     required: true,
@@ -38,10 +38,6 @@ const albumSchema = new mongoose.Schema({
   },
   coverArtUrl: {
     type: String,
-    required: true,
-  },
-  releaseYear: {
-    type: Number,
     required: true,
   },
 });

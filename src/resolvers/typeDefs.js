@@ -2,18 +2,17 @@ const { gql } = require("apollo-server");
 
 // Define your GraphQL type definitions
 const typeDefs = gql`
-  type Album {
+  type User {
     id: ID!
-    artist: String!
-    album: String!
-    tracks: [Track!]!
-    releaseDate: String!
-    genre: String!
+    username: String!
+    savedAlbums: [Album!]!
   }
 
-  type Track {
+  type Album {
+    uri: String!
     name: String!
-    length: String!
+    artist: String!
+    coverArtUrl: String!
   }
 
   type Query {
@@ -27,15 +26,9 @@ const typeDefs = gql`
 
   input AlbumInput {
     artist: String!
-    album: String!
-    tracks: [TrackInput!]!
-    releaseDate: String!
-    genre: String!
-  }
-
-  input TrackInput {
+    uri: String!
     name: String!
-    length: String!
+    coverArtUrl: String!
   }
 `;
 
