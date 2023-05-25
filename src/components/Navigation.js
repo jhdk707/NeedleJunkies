@@ -37,6 +37,16 @@ const pages = [
     page: "Friends",
     path: "/friends",
   },
+  {
+    id: 3,
+    page: "Search Spotify",
+    path: "/search/spot",
+  },
+  {
+    id: 3,
+    page: "Search Discogs",
+    path: "/search/disc",
+  },
 ];
 
 const Search = styled("div")(({ theme }) => ({

@@ -20,7 +20,8 @@ const Login = ({ onClose }) => {
       setUsername("");
       setPassword("");
       onClose();
-      navigate('/home');
+      // redirect to home page after login
+      navigate("/home");
     } catch (error) {
       console.error("Error logging in:", error);
       setMessage("Failed to log in");
