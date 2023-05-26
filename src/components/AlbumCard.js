@@ -38,7 +38,13 @@ const AlbumCard = ({ name, artist, coverArtUrl, uri }) => {
 
   return (
     <StyledCard>
-      <CardMedia component="img" height="350" image={coverArtUrl} alt={name} />
+      <CardMedia
+        component="img"
+        height="350"
+        width="auto"
+        image={coverArtUrl}
+        alt={name}
+      />
       <StyledCardContent>
         <Typography variant="subtitle1">{artist}</Typography>
         <Typography variant="subtitle2">{name}</Typography>

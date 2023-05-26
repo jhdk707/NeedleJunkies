@@ -39,14 +39,14 @@ const pages = [
   },
   {
     id: 3,
-    page: "Search Spotify",
+    page: "Search for Stuff",
     path: "/search/spot",
   },
-  {
-    id: 3,
-    page: "Search Discogs",
-    path: "/search/disc",
-  },
+  // {
+  //   id: 3,
+  //   page: "Search Discogs",
+  //   path: "/search/disc",
+  // },
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -300,7 +300,7 @@ export default function PrimarySearchAppBar() {
             ))}
           </Box>
           {/* end of added buttons code */}
-          <SearchFunction />
+          {/* <SearchFunction /> */}
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
