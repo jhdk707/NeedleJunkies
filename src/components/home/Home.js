@@ -2,7 +2,14 @@ import React from 'react';
 import { Box, Typography, Card, CardContent, CardMedia, Avatar, TextField, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import MyTech from "../MyTech";
-
+import Ants from '../images/Ants.jpg';
+import Horses from '../images/Horses.jpg'
+import WhiteBloodCells from '../images/WhiteBloodCells.jpg'
+import jesseImage from "../images/portfolio.png";
+import Pearl from '../images/Pearl.jpg';
+import Transformer from '../images/Transformer.jpeg'
+import MarqueeMoon from '../images/MarqueeMoon.jpg'
+import ComeMyFanatics from '../images/ComeMyFanatics..jpg'
 const HomePage = () => {
   const user = { name: 'John Doe' }; // Simulated user data
 
@@ -15,21 +22,44 @@ const HomePage = () => {
   // Example array of albums
   const savedAlbums = [
     {
-      artist: 'Artist 1',
-      album: 'Album 1',
-      image: 'https://example.com/album1.jpg',
+      album: 'Pearl',
+      artist: 'Janis Joplin',
+      image: Pearl,
     },
     {
-      artist: 'Artist 2',
-      album: 'Album 2',
-      image: 'https://example.com/album2.jpg',
+      album: 'Transformer',
+      artist: 'Lou Reed',
+      image: Transformer,
     },
-    // ... other albums ...
+    {
+      album: 'Marquee Moon',
+      artist: 'Television',
+      image: MarqueeMoon,
+    },
+   
   ];
+
+  const faves = [{
+    album: 'Come My Fanatics',
+    artist: 'Electric Wizard',
+    image: ComeMyFanatics,
+  },
+  {
+    album: 'Horses',
+    artist: 'Patti Smith',
+    image: Horses,
+  },
+  {
+    album: 'White Blood Cells',
+    artist: 'The White Stripes',
+    image: WhiteBloodCells,
+  },
+]
 
   const minColumns = Math.min(8, savedAlbums.length); // Minimum number of columns required
 
   const CenteredContainer = styled(Box)(({ theme }) => ({
+    
     display: 'flex',
     justifyContent: 'center', // Center horizontally
     alignItems: 'center', // Center vertically
@@ -38,17 +68,46 @@ const HomePage = () => {
   }));
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: '#ffe548' }}>
+      <div
+        style={{
+          
+          width: '300px',
+          borderRight: '3px solid #ffb20f',
+          padding: '20px',
+          overflow: 'auto',
+        }}
+      >
+        <Box mb={4} >
+          <Typography variant="h6" sx={{ textAlign: 'center' }}>Your Favorite's:</Typography>
+          <ol style={{ listStyle: 'decimal', paddingLeft: '20px',  }}>
+            {faves.slice(0, 3).map((album, index) => (
+              <li key={index}>
+                <Card sx= {{backgroundColor: '#252627', color:'white', textAlign: 'center' }}>
+                  <CardMedia
+                 
+                    component="img"
+                    height="200"
+                    image={album.image || ''}
+                    alt={album.album || ''}
+                  />
+                  <CardContent>
+                    <Typography variant="subtitle1">{album.artist}</Typography>
+                    <Typography variant="subtitle2">{album.album}</Typography>
+                  </CardContent>
+                </Card>
+              </li>
+            ))}
+          </ol>
+        </Box>
+        {/* <MyTech /> */}
+      </div>
       <div style={{ flex: '1', padding: '20px', overflow: 'auto' }}>
         <CenteredContainer>
           <Typography variant="h4" component="div">
-            Welcome, {formattedName}!
+            Welcome, Jesse!
           </Typography>
-          <Avatar
-            sx={{ width: 100, height: 100, mt: 2 }}
-            alt={user.name}
-            src={user.photoUrl}
-          />
+          <Avatar sx={{ width: 100, height: 100, mt: 2 }} alt={user.name} src={jesseImage} />
         </CenteredContainer>
         <Box
           mt={4} // Increase the top margin to create more spacing
@@ -59,7 +118,8 @@ const HomePage = () => {
           minHeight="40vh" // Adjust the height as needed
         >
           <Typography variant="h6">
-            Since you liked {savedAlbums[0].album}, you may also like...
+            Since you liked Horses, you may also like...
+            {/* {savedAlbums[0].album} */}
           </Typography>
           <Box
             sx={{
@@ -73,16 +133,16 @@ const HomePage = () => {
             }}
           >
             {savedAlbums.slice(0, minColumns).map((album, index) => (
-              <Card key={index} sx={{ height: '100%' }}>
+              <Card key={index} sx= {{backgroundColor: '#252627' }}>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height=""
                   image={album.image}
                   alt={album.album}
                 />
                 <CardContent>
-                  <Typography variant="subtitle1">{album.artist}</Typography>
-                  <Typography variant="subtitle2">{album.album}</Typography>
+                  <Typography  variant="subtitle1" sx={{ textAlign: 'center', color:'white' }}>{album.artist}</Typography>
+                  <Typography variant="subtitle2" sx={{ textAlign: 'center', color:'white' }}>{album.album} </Typography>
                 </CardContent>
               </Card>
             ))}
@@ -97,15 +157,15 @@ const HomePage = () => {
           overflow: 'auto',
         }}
       >
-        <Box mb={4}>
+        {/* <Box mb={4}>
           <Typography variant="h6">Your Fave Five:</Typography>
           <ol style={{ listStyle: 'decimal', paddingLeft: '20px' }}>
-            {savedAlbums.slice(0, 5).map((album, index) => (
+            {faves.slice(0, 3).map((album, index) => (
               <li key={index}>
                 <Card>
                   <CardMedia
                     component="img"
-                    height="100"
+                    height="200"
                     image={album.image || ''}
                     alt={album.album || ''}
                   />
@@ -117,32 +177,8 @@ const HomePage = () => {
               </li>
             ))}
           </ol>
-        </Box>
-        <MyTech />
-        {/* <Box>
-          <Typography variant="h6">My Tech:</Typography>
-          <Box mt={2}>
-            <Typography>Turntable:</Typography>
-            <TextField label="Turntable Input" />
-          </Box>
-          <Box mt={2}>
-            <Typography>Amp:</Typography>
-            <TextField label="Amp Input" />
-          </Box>
-          <Box mt={2}>
-            <Typography>Speakers:</Typography>
-            <TextField label="Speakers Input" />
-          </Box>
-          <Box mt={2}>
-            <Typography>Other Gear:</Typography>
-            <TextField label="Other Gear Input" />
-          </Box>
-          <Box mt={2}>
-            <Button variant="contained" color="primary">
-              Update
-            </Button>
-          </Box>
         </Box> */}
+        <MyTech />
       </div>
     </div>
   );
