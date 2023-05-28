@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.048ab8a5.css",
+    "main.js": "/static/js/main.6974896d.js",
+    "static/media/portfolio.png": "/static/media/portfolio.40c8b21a78e4f88bb957.png",
+    "static/media/jermsailor.png": "/static/media/jermsailor.a5467e135e17b16141cd.png",
+    "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
+    "static/media/welcome-photo.png": "/static/media/welcome-photo.88e93b33a9ec1f21273a.png",
+    "static/media/KidA.png": "/static/media/KidA.1aeb0be51d48d38e894d.png",
+    "static/media/fa-brands-400.ttf": "/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.bb975c966c37455a1bc3.woff2",
+    "static/media/tylersmajesty.jpg": "/static/media/tylersmajesty.9bb534087b2ff448a457.jpg",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.e033a13ee751afc1860c.woff2",
+    "static/media/ZiggyStardust.jpg": "/static/media/ZiggyStardust.017edb86202dd9d2473d.jpg",
+    "static/media/PrivateDancer.jpg": "/static/media/PrivateDancer.2a1507014b6eb1b5de3e.jpg",
+    "static/media/Rumours.png": "/static/media/Rumours.6da1735f35311d8bf292.png",
+    "static/media/fa-regular-400.ttf": "/static/media/fa-regular-400.d87474231f4192884802.ttf",
+    "static/media/BitchesBrew.jpg": "/static/media/BitchesBrew.559632d6a07248bbd79d.jpg",
+    "static/media/MarqueeMoon.jpg": "/static/media/MarqueeMoon.429f14bf222758aa4aca.jpg",
+    "static/media/VelvetUndergroundAndNico.jpg": "/static/media/VelvetUndergroundAndNico.b73dbcb4254a164979c0.jpg",
+    "static/media/MaggotBrain.jpg": "/static/media/MaggotBrain.86fd87d4dcfa6ba35940.jpg",
+    "static/media/Transformer.jpeg": "/static/media/Transformer.5e05df4dd6c82913b91d.jpeg",
+    "static/media/Horses.jpg": "/static/media/Horses.c690f408d819e85eb284.jpg",
+    "static/media/ReadytoDie.jpg": "/static/media/ReadytoDie.09934f64274221d92c70.jpg",
+    "static/media/Pearl.jpg": "/static/media/Pearl.41d8c8284cf671239214.jpg",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.3223dc79c1adee56370b.woff2",
+    "static/media/WhiteBloodCells.jpg": "/static/media/WhiteBloodCells.0f032b46bd8bb3c49292.jpg",
+    "static/media/Ants.jpg": "/static/media/Ants.b82bdee2df323d482fba.jpg",
+    "static/media/ThingsFallApart.jpg": "/static/media/ThingsFallApart.3a6a87e351cb48f92852.jpg",
+    "static/media/NeverMindtheBollocks.png": "/static/media/NeverMindtheBollocks.22cc0875787c3a876126.png",
+    "static/media/ComeMyFanatics..jpg": "/static/media/ComeMyFanatics..1fa2eecade339fa42504.jpg",
+    "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
+    "index.html": "/index.html",
+    "main.048ab8a5.css.map": "/static/css/main.048ab8a5.css.map",
+    "main.6974896d.js.map": "/static/js/main.6974896d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.048ab8a5.css",
+    "static/js/main.6974896d.js"
+  ]
+}
