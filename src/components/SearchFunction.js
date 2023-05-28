@@ -7,7 +7,7 @@ import SpotResults from "./SpotResults";
 import DiscResults from "./DiscResults";
 const Album = require("../models/album.js"); // import album model for database accsess
 
-function SearchFunction({ updateSpotifyResults }) {
+function SearchFunction({ updateResults }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
@@ -50,11 +50,6 @@ function SearchFunction({ updateSpotifyResults }) {
     }
   };
 
-  // const searchSpotAlbum = (searchTerm) => {
-
-  //     SpotResults.search(searchTerm);
-  // };
-
   const searchSpotAlbum = async (searchTerm) => {
     // Perform search logic using searchTerm
     const url = `https://spotify23.p.rapidapi.com/search/?q=${encodeURIComponent(
@@ -75,7 +70,7 @@ function SearchFunction({ updateSpotifyResults }) {
       if (response.ok) {
         const result = await response.json();
         console.log(result);
-        updateSpotifyResults(result);
+        updateResults(result);
       } else {
         console.error("Error occurred while searching");
       }
@@ -84,8 +79,29 @@ function SearchFunction({ updateSpotifyResults }) {
     }
   };
 
-  const searchDiscogsAlbum = async () => {
-    DiscResults.search(searchTerm);
+  const searchDiscogsAlbum = async (searchTerm) => {
+    // Perform search logic using searchTerm
+    const url = `https://api.discogs.com/database/search?release_title=${encodeURIComponent(
+      searchTerm
+    )}&type=release&format=album&per_page=10`;
+    const headers = {
+      "User-Agent": "Your App Name",
+      Authorization: `Discogs token=${process.env.REACT_APP_DISCOGS_API_KEY}`,
+    };
+
+    try {
+      const response = await fetch(url, { headers });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+        updateResults(result);
+      } else {
+        console.error("Error occurred while searching");
+      }
+    } catch (error) {
+      console.error("Error occurred while searching", error);
+    }
   };
 
   return (
