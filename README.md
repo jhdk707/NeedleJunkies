@@ -14,7 +14,7 @@
   
 
 ## Description
-A music based social media site geared towards record collectors and audiophiles! Add albums to your favorites, look up albums for sale, check out your friends collection's, and comment and let them know what you think!
+A music based social media site geared towards record collectors and audiophiles! Add albums to your favorites, look up albums for sale, check out your friends collection's, and comment and let them know what you think! This is V1 of this project as the developers intend to make additions and improvements. 
 
   ##  Installation
   Clone the code, npm i, and npm run dev
@@ -24,16 +24,11 @@ A music based social media site geared towards record collectors and audiophiles
   Album logging, sales, and socializing with friends!
    
   ## Demo
-  
+  ![Application Screenshot](https://github.com/jhdk707/NeedleJunkies/assets/118328184/a007b83b-6f61-4830-9a47-ffb859e5ea73)
+  A screenshot of a user's homepage.
 
   ## Contributions
   Jesse Hudak, Tyler Dinslage, Jeremy McCarter, BCS tutor's and TA's.
-
-  ## Tests
-  Please make sure to update tests as appropriate.
-  
- 
-  
 
    ## License
 This project is licensed under the MIT license.
@@ -41,5 +36,8 @@ This project is licensed under the MIT license.
   
   
   ## Questions?
-  Feel free to contact us at: jeremymccarter27@gmail.com
-  Github: https://github.com/jeremymccarter
+  Feel free to contact us: 
+  Jeremy: jeremymccarter27@gmail.com or https://github.com/jeremymccarter
+  Jesse: jessehudak707@outlook.com or https://github.com/jhdk707
+  Tyler: tyler.dins88@gmail.com or https://github.com/tylerdins88
+  
