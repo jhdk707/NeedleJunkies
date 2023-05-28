@@ -1,41 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import { Grid, Box, Typography } from "@mui/material";
+import SearchFunction from "./SearchFunction";
+import PurchaseAlbum from "./PurchaseAlbum";
 
-const searchDiscogsAlbum = async (searchTerm) => {
-  // Perform search logic using searchTerm
-  const url = `https://api.discogs.com/database/search?release_title=${encodeURIComponent(
-    searchTerm
-  )}&type=release&format=album&per_page=10`;
-  const headers = {
-    "User-Agent": "Your App Name",
-    Authorization: `Discogs token=${process.env.REACT_APP_DISCOGS_API_KEY}`,
-  };
-
-  try {
-    const response = await fetch(url, { headers });
-
-    if (response.ok) {
-      const result = await response.json();
-      console.log(result);
-    } else {
-      console.error("Error occurred while searching");
-    }
-  } catch (error) {
-    console.error("Error occurred while searching", error);
-  }
-};
 
 function DiscResults() {
-  return (
-    <>
-      <h3>
-        {" "}
-        This Worked!!! Search function rendering under construction, coming
-        soon!
-      </h3>
-    </>
-  );
+    const [discogsResults, setDiscogsResults] = useState(null);
+    const saveAlbumData = () => { };
+
+    return (
+        <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="100vh"
+        >
+            <Box>
+                <SearchFunction updateResults={setDiscogsResults} />
+
+                {discogsResults && (
+                    <Box>
+                        <Grid
+                            container
+                            spacing={3}
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Grid item xs={12}>
+                                <Grid container spacing={3} justifyContent="center">
+                                    {discogsResults.results.map((result) => (
+                                        <Grid item key={result.id} xs={12} sm={6} md={4} lg={3}>
+                                            <Box
+                                                maxWidth={350}
+                                                margin={2}
+                                                display="flex"
+                                                justifyContent="center"
+                                            >
+                                                <PurchaseAlbum
+                                                    title={result.title}
+                                                    coverArtUrl={result.cover_image}
+                                                    masterID={result.master_id}
+                                                    saveAlbumData={saveAlbumData}
+                                                />
+                                            </Box>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        {discogsResults.results.length === 0 && (
+                            <Typography variant="body2" align="center">
+                                No albums found.
+                            </Typography>
+                        )}
+                    </Box>
+                )}
+            </Box>
+        </Box>
+    );
 }
 
-DiscResults.search = searchDiscogsAlbum;
 
 export default DiscResults;
