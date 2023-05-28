@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -19,8 +19,13 @@ import Pearl from "../images/Pearl.jpg";
 import Transformer from "../images/Transformer.jpeg";
 import MarqueeMoon from "../images/MarqueeMoon.jpg";
 import ComeMyFanatics from "../images/ComeMyFanatics..jpg";
+
 const HomePage = () => {
   const user = { name: "John Doe" }; // Simulated user data
+  const [backgroundColor, setBackgroundColor] = useState("");
+  const [textColor, setTextColor] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [originalImage, setOriginalImage] = useState(null);
 
   let formattedName = "";
 
@@ -73,13 +78,55 @@ const HomePage = () => {
     alignItems: "center", // Center vertically
     flexDirection: "column",
     height: "", // Adjust the height as needed
-
-    display: "flex",
-    justifyContent: "center", // Center horizontally
-    alignItems: "center", // Center vertically
-    flexDirection: "column",
-    height: "", // Adjust the height as needed
   }));
+
+  const handleBackgroundColorChange = (event) => {
+    const color = event.target.value;
+    setBackgroundColor(color);
+    localStorage.setItem("background-color", color);
+  };
+
+  const handleTextColorChange = (event) => {
+    const color = event.target.value;
+    setTextColor(color);
+    localStorage.setItem("text-color", color);
+  };
+
+  const handleBackgroundImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setBackgroundImage(reader.result);
+      localStorage.setItem("background-image", reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleResetImage = () => {
+    setBackgroundImage(null);
+    localStorage.removeItem("background-image");
+  };
+
+  useEffect(() => {
+    const storedBackgroundColor = localStorage.getItem("background-color");
+    const storedTextColor = localStorage.getItem("text-color");
+    const storedBackgroundImage = localStorage.getItem("background-image");
+
+    if (storedBackgroundColor) {
+      setBackgroundColor(storedBackgroundColor);
+    }
+    if (storedTextColor) {
+      setTextColor(storedTextColor);
+    }
+    if (storedBackgroundImage) {
+      setBackgroundImage(storedBackgroundImage);
+      setOriginalImage(storedBackgroundImage);
+    }
+  }, []);
 
   return (
     <div
@@ -87,7 +134,10 @@ const HomePage = () => {
         display: "flex",
         height: "100vh",
         overflow: "hidden",
-        backgroundColor: "#ffe548",
+        backgroundColor: backgroundColor,
+        color: textColor,
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
       }}
     >
       <div
@@ -100,7 +150,7 @@ const HomePage = () => {
       >
         <Box mb={4}>
           <Typography variant="h6" sx={{ textAlign: "center" }}>
-            Your Favorite's:
+            Your Favorites:
           </Typography>
           <ol style={{ listStyle: "decimal", paddingLeft: "20px" }}>
             {faves.slice(0, 3).map((album, index) => (
@@ -132,7 +182,7 @@ const HomePage = () => {
       <div style={{ flex: "1", padding: "20px", overflow: "auto" }}>
         <CenteredContainer>
           <Typography variant="h4" component="div">
-            Welcome, Jesse!
+            Welcome, {formattedName}!
           </Typography>
           <Avatar
             sx={{ width: 100, height: 100, mt: 2 }}
@@ -198,27 +248,32 @@ const HomePage = () => {
           overflow: "auto",
         }}
       >
-        {/* <Box mb={4}>
-          <Typography variant="h6">Your Fave Five:</Typography>
-          <ol style={{ listStyle: 'decimal', paddingLeft: '20px' }}>
-            {faves.slice(0, 3).map((album, index) => (
-              <li key={index}>
-                <Card>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={album.image || ''}
-                    alt={album.album || ''}
-                  />
-                  <CardContent>
-                    <Typography variant="subtitle1">{album.artist}</Typography>
-                    <Typography variant="subtitle2">{album.album}</Typography>
-                  </CardContent>
-                </Card>
-              </li>
-            ))}
-          </ol>
-        </Box> */}
+        <Box mb={4}>
+          <Typography variant="h6">Customization:</Typography>
+          <TextField
+            label="Background Color"
+            value={backgroundColor}
+            onChange={handleBackgroundColorChange}
+            sx={{ marginBottom: 2 }}
+          />
+          <TextField
+            label="Text Color"
+            value={textColor}
+            onChange={handleTextColorChange}
+            sx={{ marginBottom: 2 }}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleBackgroundImageUpload}
+            sx={{ marginBottom: 2 }}
+          />
+          {backgroundImage && (
+            <Button onClick={handleResetImage} sx={{ marginBottom: 2 }}>
+              Reset Image
+            </Button>
+          )}
+        </Box>
         <MyTech />
       </div>
     </div>
