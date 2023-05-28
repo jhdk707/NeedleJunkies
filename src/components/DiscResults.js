@@ -3,7 +3,6 @@ import { Grid, Box, Typography } from "@mui/material";
 import SearchFunction from "./SearchFunction";
 import PurchaseAlbum from "./PurchaseAlbum";
 
-
 function DiscResults() {
     const [discogsResults, setDiscogsResults] = useState(null);
     const saveAlbumData = () => { };

@@ -14,15 +14,15 @@ const StyledCardContent = styled(CardContent)({
     textAlign: "center",
 });
 
-const PurchaseAlbum = ({ title, artist, coverArtUrl, masterID }) => {
-    const albumData = { title, artist, coverArtUrl, masterID };
+const PurchaseAlbum = ({ title, coverArtUrl, masterID }) => {
+    const albumData = { title, coverArtUrl, masterID };
 
     return (
         <StyledCard>
             <CardMedia
                 component="img"
-                height="350"
-                width="auto"
+                height="200"
+                width="200"
                 image={coverArtUrl}
                 alt={title}
             />
@@ -30,7 +30,6 @@ const PurchaseAlbum = ({ title, artist, coverArtUrl, masterID }) => {
                 <Typography variant="subtitle2">{title}</Typography>
             </StyledCardContent>
             <div>
-                {/* Render button */}
                 <button
                     style={{
                         width: "350px",
@@ -43,9 +42,9 @@ const PurchaseAlbum = ({ title, artist, coverArtUrl, masterID }) => {
                     }}
                 >
                     <a
-                        href={`https://www.discogs.com/master/${masterID}`} // Replace with the desired URL
-                        target="_blank" // Open the link in a new tab
-                        rel="noopener noreferrer" // Recommended for security and performance
+                        href={`https://www.discogs.com/master/${masterID}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{
                             color: "#fff9fb",
                             textDecoration: "none",
