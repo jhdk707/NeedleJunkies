@@ -24,7 +24,6 @@
     "mdb-react-ui-kit": "^6.0.0",
     "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",
-    "node": "^20.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
